@@ -1,0 +1,31 @@
+{
+  "name": "quizzz-cli",
+  "version": "1.0.0",
+  "description": "A Quiz CLI app in Node.js. The app will ask you questions till you get it wrong",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "best",
+    "quiz",
+    "quizzer",
+    "quizzz-cli"
+  ],
+  "author": "Jaskaranpreet Singh <jaskaransingh123@gmail.com>",
+  "license": "ISC",
+  "bin": {
+    "quiz": "./index.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.1",
+    "chalk": "^4.1.0",
+    "cli-table3": "^0.6.0",
+    "clui": "^0.3.6",
+    "conf": "^8.0.0",
+    "esm": "^3.2.25",
+    "figlet": "^1.5.0",
+    "inquirer": "^7.3.3",
+    "minimist": "^1.2.5"
+  }
+}
