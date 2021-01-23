@@ -4,6 +4,7 @@ import figlet from 'figlet'
 
 import { version } from './version';
 import { help } from './help'
+import { randomQuestions } from './utils'
 
 export async function cli(argsArray){
     const args = minimist(argsArray.slice(2));
@@ -31,7 +32,8 @@ export async function cli(argsArray){
         case "help":
             help(args)
             break
-
+        case "random-questions":
+            randomQuestions(args)
         default:
             console.error(`"${cmd}" is not a valid command!`);
             break;
