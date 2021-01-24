@@ -33,7 +33,13 @@ export async function cli(argsArray){
             help(args)
             break
         case "random-questions":
-            randomQuestions(args)
+            if(args.type || args['type'] || args.t || args.amount ||args['amount'] ||args.a ){
+                randomQuestions(args)
+            }else{
+                help(args)
+            }
+            break
+
         default:
             console.error(`"${cmd}" is not a valid command!`);
             break;
