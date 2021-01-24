@@ -11,6 +11,7 @@ const menus = {
     'random-questions':`
         ${chalk.greenBright('quiz random-questions <options>')}
         --type, -t ..... get questions with type multiple or boolean (true/false)
+        --amount, -a ..... get amount of questions you wanted to answer 
     `
 }
 
