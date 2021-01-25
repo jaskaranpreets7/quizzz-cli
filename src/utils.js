@@ -23,9 +23,10 @@ export async function randomQuestions(args){
         })
 
         const questions = []
+        const correctAnsStore = {}
 
         const questionsProps = {
-            type:'checkbox',
+            type:'list',
             validate: function( value ) {
                 if (value.length) {
                     return true;
@@ -38,18 +39,33 @@ export async function randomQuestions(args){
         response.data.results.map((item) => {
             let choices = []
             choices.push(item.correct_answer)
+            correctAnsStore[item.correct_answer] = item.correct_answer
             choices.push(...item.incorrect_answers)
             questions.push({...questionsProps, message: `${chalk.green(item.question)}` , name: item.correct_answer, choices })
         })
 
         status.stop()
 
-        const answers = await inquirer.prompt(questions)
-        console.log(answers)
+        const userAnswers = await inquirer.prompt(questions)
+
+        rightAnswersResults(correctAnsStore , userAnswers )
     } catch (error) {
         status.stop()
         console.log("Request got failed with status code: " + error.response.status)
     }finally{
         status.stop()
     }
+}
+
+function rightAnswersResults(correctAns, userAns){
+    let results = 0
+
+    for(let ans in correctAns){
+        if(ans in userAns){
+            if(userAns[ans] === ans){
+                results++
+            }
+        }
+    }
+    console.log(chalk.yellow.italic("Oops game over your score is: ") + chalk.cyan(results) )
 }
