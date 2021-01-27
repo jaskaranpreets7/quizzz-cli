@@ -33,7 +33,8 @@ export async function cli(argsArray){
             help(args)
             break
         case "random-questions":
-            if(args.type || args['type'] || args.t || args.amount ||args['amount'] ||args.a ){
+            console.log("Some instruction regarding this game. \n 1. Right answer will give you 1000 points \n 2. Wrong answer give you 0 points ")
+            if(args.type || args['type'] || args.t || args.amount || args['amount'] || args.a ){
                 randomQuestions(args)
             }else{
                 help(args)
