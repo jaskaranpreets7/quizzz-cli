@@ -14,18 +14,9 @@ export async function randomQuestions(args){
     status.start()
 
     try {
-
-        const response = await axios.get(baseURL,{
-            params:{
-                type,
-                amount
-            }
-        })
-
         const questions = []
         const correctAnsStore = {}
-
-        const questionsProps = {
+        const questionsInqProps = {
             type:'list',
             validate: function( value ) {
                 if (value.length) {
@@ -35,19 +26,23 @@ export async function randomQuestions(args){
                 }
             },
         }
+        const response = await axios.get(baseURL,{
+            params:{
+                type,
+                amount
+            }
+        })
 
         response.data.results.map((item) => {
             let choices = []
-            choices.push(item.correct_answer)
             correctAnsStore[item.correct_answer] = item.correct_answer
+            choices.push(item.correct_answer)
             choices.push(...item.incorrect_answers)
-            questions.push({...questionsProps, message: `${chalk.green(item.question)}` , name: item.correct_answer, choices })
+            questions.push({...questionsInqProps, message: `${chalk.green(item.question)}` , name: item.correct_answer, choices })
         })
 
         status.stop()
-
         const userAnswers = await inquirer.prompt(questions)
-
         rightAnswersResults(correctAnsStore , userAnswers )
     } catch (error) {
         status.stop()
@@ -67,5 +62,5 @@ function rightAnswersResults(correctAns, userAns){
             }
         }
     }
-    console.log(chalk.yellow.italic("Oops game over your score is: ") + chalk.cyan(results) )
+    console.log(chalk.yellow.italic("Oops game over your score is: ") + chalk.cyan(results * 1000) )
 }
