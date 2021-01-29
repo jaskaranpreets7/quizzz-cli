@@ -5,11 +5,48 @@ import chalk from 'chalk'
 
 const baseURL = 'https://opentdb.com/api.php?amount=10'
 
-//Get random questions 
+const categories = {
+    "General Knowledge" : 9,
+    "Entertainment: Books": 10,
+    "Entertainment: Film": 11,
+    "Entertainment: Music": 12,
+    "Entertainment: Musicals & Theatres": 13,
+    "Entertainment: Televison": 14,
+    "Entertainment: Video Games": 15,
+    "Entertainment: Board Games": 16,
 
-export async function randomQuestions(args){
+}
+//Get Categories
+export async function getCategories(){
+    for(const category in categories){
+        console.log(category)
+    }
+}
+
+//Get random questions 
+export function randomQuestions(args){
     let type = args.type || args.t;
     let amount = args.amount || args.a
+
+    fetchingQuesAns({ type, amount })
+}
+//Get by category
+export function byCategory(args){
+    let amount = args.amount || args.a
+    let categoryName = args.category || args.c
+    let categoryNumber = 0
+    if(categoryName in categories){
+        categoryNumber = categories[categoryName]
+    }else{
+        console.log(`Invalid category. Please run ${chalk.red('quiz get-categories')} to get valid category names`)
+        return
+    }
+
+    fetchingQuesAns({ amount, category : categoryNumber })
+} 
+
+
+async function fetchingQuesAns(params){
     const status = new Spinner("Fetching some questions....")
     status.start()
 
@@ -26,12 +63,7 @@ export async function randomQuestions(args){
                 }
             },
         }
-        const response = await axios.get(baseURL,{
-            params:{
-                type,
-                amount
-            }
-        })
+        const response = await axios.get(baseURL,{ params})
 
         response.data.results.map((item) => {
             let choices = []
