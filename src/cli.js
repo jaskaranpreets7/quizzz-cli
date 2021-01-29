@@ -4,7 +4,7 @@ import figlet from 'figlet'
 
 import { version } from './version';
 import { help } from './help'
-import { randomQuestions } from './utils'
+import { randomQuestions, byCategory, getCategories } from './utils'
 
 export async function cli(argsArray){
     const args = minimist(argsArray.slice(2));
@@ -40,9 +40,18 @@ export async function cli(argsArray){
                 help(args)
             }
             break
-
+        case "get-categories":
+                getCategories()
+            break
+        case "by-category":
+            if(args.amount || args['amount'] || args.a || args.category || args['category'] || args.c ){
+                byCategory(args)
+            }else{
+                help(args)
+            }
+            break
         default:
-            console.error(`"${cmd}" is not a valid command!`);
+            console.error(`${cmd} is not a valid command!`);
             break;
     }
 }
