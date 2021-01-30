@@ -2,15 +2,20 @@ import axios from 'axios'
 import { Spinner } from 'clui'
 import inquirer from 'inquirer'
 import chalk from 'chalk'
+import Table from 'cli-table3'
 import { categories } from './categories'
 
 const baseURL = 'https://opentdb.com/api.php?amount=10'
 
 //Get Categories
 export async function getCategories(){
-    for(const category in categories){
-        console.log(category)
+    const table = new Table({ head: ['Serial No.', 'Category Name'],colWidths: [12, 40] });
+    const arryCategories = Object.keys(categories)
+
+    for(const key in arryCategories ){
+        table.push({[+key+1]: arryCategories[key]});
     }
+    console.log(table.toString());
 }
 
 //Get random questions 
