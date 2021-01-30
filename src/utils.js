@@ -2,20 +2,10 @@ import axios from 'axios'
 import { Spinner } from 'clui'
 import inquirer from 'inquirer'
 import chalk from 'chalk'
+import { categories } from './categories'
 
 const baseURL = 'https://opentdb.com/api.php?amount=10'
 
-const categories = {
-    "General Knowledge" : 9,
-    "Entertainment: Books": 10,
-    "Entertainment: Film": 11,
-    "Entertainment: Music": 12,
-    "Entertainment: Musicals & Theatres": 13,
-    "Entertainment: Televison": 14,
-    "Entertainment: Video Games": 15,
-    "Entertainment: Board Games": 16,
-
-}
 //Get Categories
 export async function getCategories(){
     for(const category in categories){
