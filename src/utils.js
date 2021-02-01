@@ -73,7 +73,7 @@ async function fetchingQuesAns(params){
         rightAnswersResults(correctAnsStore , userAnswers )
     } catch (error) {
         status.stop()
-        console.log("Request got failed with status code: " + error.response.status)
+        console.log(`${chalk.red('Request got failed with status code: ')} ${error.response.status}`)
     }finally{
         status.stop()
     }
