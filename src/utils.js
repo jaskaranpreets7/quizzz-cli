@@ -65,7 +65,7 @@ async function fetchingQuesAns(params){
             correctAnsStore[item.correct_answer] = item.correct_answer
             choices.push(item.correct_answer)
             choices.push(...item.incorrect_answers)
-            questions.push({...questionsInqProps, message: `${chalk.green(item.question)}` , name: item.correct_answer, choices })
+            questions.push({...questionsInqProps, message: `${chalk.green( filterUnreadableText(item.question) )}` , name: item.correct_answer, choices })
         })
 
         status.stop()
@@ -77,6 +77,10 @@ async function fetchingQuesAns(params){
     }finally{
         status.stop()
     }
+}
+
+function filterUnreadableText(question) {
+    return question.replace("&quot;",'').replace("&#039;",'')
 }
 
 function rightAnswersResults(correctAns, userAns){
