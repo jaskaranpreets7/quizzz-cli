@@ -81,7 +81,6 @@ async function fetchingQuesAns(params){
 
 function filterUnreadableText(question) {
     if( question.includes('&quot;')){
-        console.log('in if')
         return question.replace("&quot;",'')
     }else if( question.includes('&#039;')){
         return question.replace('&#039;','')
