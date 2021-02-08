@@ -9,7 +9,7 @@ const baseURL = 'https://opentdb.com/api.php?amount=10'
 
 //Get Categories
 export async function getCategories(){
-    const table = new Table({ head: ['Serial No.', 'Category Name'],colWidths: [12, 40] });
+    const table = new Table({ head: ['Serial No.', 'Category Name'], colWidths: [15, 40] });
     const arryCategories = Object.keys(categories)
 
     for(const key in arryCategories ){
@@ -36,7 +36,6 @@ export function byCategory(args){
         console.log(`Invalid category. Please run ${chalk.red('quiz get-categories')} to get valid category names`)
         return
     }
-
     fetchingQuesAns({ amount, category : categoryNumber })
 } 
 
