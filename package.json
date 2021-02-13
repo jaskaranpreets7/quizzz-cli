@@ -22,6 +22,7 @@
   "bin": {
     "quiz": "./index.js"
   },
+  "homepage": "https://github.com/jaskaranpreets7/quizzz-cli#README.md",
   "dependencies": {
     "axios": "^0.21.1",
     "chalk": "^4.1.0",
