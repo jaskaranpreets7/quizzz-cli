@@ -1,6 +1,6 @@
 {
   "name": "quizzz-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A Quiz CLI app in Node.js. The app will ask you questions till you get it wrong",
   "main": "index.js",
   "scripts": {
